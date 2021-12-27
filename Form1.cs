@@ -143,20 +143,22 @@ namespace WinFormsApp1
 
             foreach (Units num in inumbers)
             {
+                if (k > 0)
+                {
+                    Controls.RemoveByKey("label" + p);
+                }
                 if (num.Number_Kol != 0)
                 {
-                    if(k > 0)
-                    {
-                        lbl[p].Dispose();
-                    }    
+                    
                     lbl[p] = new Label();
-                    lbl[p].Location = new Point(530, 20 + r * 30);
-                    lbl[p].Size = new Size(100, 30);
+                    lbl[p].Location = new Point(530, 70 + r * 20);
+                    lbl[p].Size = new Size(100, 20);
                     lbl[p].Text = num.Number_Name + ": " + num.Number_Kol;
-                    lbl[p].Parent = this;
+                    lbl[p].Name = "label" + p;
+                    lbl[p].Parent = this;                    
                     this.Controls.Add(lbl[p]);
                     Graphics h = CreateGraphics();
-                    h.FillRectangle(My_color[p], new Rectangle(520, 22 + r * 30, 10, 10));
+                    h.FillRectangle(My_color[p], new Rectangle(520, 72 + r * 20, 10, 10)); // Квадраты легенды
                     h.DrawPie(new Pen(Color.White, 2), 308, 94, 200, 200, Start, Ppie * num.Number_Kol);
                     h.FillPie(My_color[p], 308, 94, 200, 200, Start, Ppie * num.Number_Kol); // заливка             
                     h.Dispose(); // Очистка памяти
